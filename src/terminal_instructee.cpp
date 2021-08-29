@@ -1,4 +1,4 @@
-#include <gd100/terminal.hpp>
+#include <katerm/terminal.hpp>
 #include <iostream>
 
 namespace gd100 {

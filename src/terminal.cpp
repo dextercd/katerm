@@ -1,8 +1,8 @@
 #include <iostream>
 #include <algorithm>
 
-#include <gd100/terminal.hpp>
-#include <gd100/terminal_decoder.hpp>
+#include <katerm/terminal.hpp>
+#include <katerm/terminal_decoder.hpp>
 #include <cw/character_width.hpp>
 
 namespace gd100 {

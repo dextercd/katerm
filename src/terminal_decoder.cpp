@@ -2,8 +2,8 @@
 #include <algorithm>
 #include <charconv>
 
-#include <gd100/terminal_decoder.hpp>
-#include <gd100/colours.hpp>
+#include <katerm/terminal_decoder.hpp>
+#include <katerm/colours.hpp>
 
 namespace gd100 {
 

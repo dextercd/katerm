@@ -1,7 +1,7 @@
 #include <type_traits>
 #include <algorithm>
 
-#include <gd100/terminal_screen.hpp>
+#include <katerm/terminal_screen.hpp>
 
 namespace gd100 {
 

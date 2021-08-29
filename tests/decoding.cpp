@@ -1,7 +1,7 @@
 #include <catch2/catch.hpp>
 
-#include <gd100/terminal.hpp>
-#include <gd100/terminal_decoder.hpp>
+#include <katerm/terminal.hpp>
+#include <katerm/terminal_decoder.hpp>
 
 TEST_CASE("utf-8", "[utf-8]") {
     auto decode_utf8 = [](auto const& utf8) {
