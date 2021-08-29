@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.19)
 
-project(godot-terminal
-    LANGUAGES CXX)
+project(katerm)
 
 enable_testing()
 
@@ -48,9 +47,6 @@ target_link_libraries(terminal-static
     PUBLIC $<TARGET_PROPERTY:terminal-interface,INTERFACE_LINK_LIBRARIES>)
 
 add_subdirectory(terminfo)
-
-add_subdirectory(godot_lite_wrapper)
-add_subdirectory(godot_terminal)
 
 add_subdirectory(extern/Catch2)
 
