@@ -1,7 +1,7 @@
 # This terminfo contains a bunch of stuff that's not supported /yet/
 # Everything in here should be parsed correctly, but it might not do anything
 
-gdterm,
+katerm,
 	acsc=+C\,D-A.B0E``aaffgghFiGjjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~,
 	am,
 	bce,

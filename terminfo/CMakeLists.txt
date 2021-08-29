@@ -1,6 +1,6 @@
 add_custom_command(
     OUTPUT
-        g/gdterm
+        k/katerm
     DEPENDS
         term.info
     COMMAND
@@ -10,4 +10,4 @@ add_custom_command(
 
 add_custom_target(terminfo ALL
     DEPENDS
-        g/gdterm)
+        k/katerm)
