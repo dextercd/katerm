@@ -1,5 +1,5 @@
-#ifndef GDTERM_TERMINAL_SCREEN_HPP
-#define GDTERM_TERMINAL_SCREEN_HPP
+#ifndef KATERM_TERMINAL_SCREEN_HPP
+#define KATERM_TERMINAL_SCREEN_HPP
 
 #include <vector>
 #include <memory>

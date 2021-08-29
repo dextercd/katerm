@@ -1,5 +1,5 @@
-#ifndef GDTERM_TERMINAL_DATA_HPP
-#define GDTERM_TERMINAL_DATA_HPP
+#ifndef KATERM_TERMINAL_DATA_HPP
+#define KATERM_TERMINAL_DATA_HPP
 
 namespace katerm {
 

@@ -1,5 +1,5 @@
-#ifndef GDTERM_BIT_CONTAINER_HPP
-#define GDTERM_BIT_CONTAINER_HPP
+#ifndef KATERM_BIT_CONTAINER_HPP
+#define KATERM_BIT_CONTAINER_HPP
 
 #include <type_traits>
 

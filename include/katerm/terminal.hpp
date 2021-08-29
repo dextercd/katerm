@@ -1,5 +1,5 @@
-#ifndef GDTERM_TERMINAL_HPP
-#define GDTERM_TERMINAL_HPP
+#ifndef KATERM_TERMINAL_HPP
+#define KATERM_TERMINAL_HPP
 
 #include <cstdint>
 

@@ -1,5 +1,5 @@
-#ifndef GDTERM_COLORS_HPP
-#define GDTERM_COLORS_HPP
+#ifndef KATERM_COLORS_HPP
+#define KATERM_COLORS_HPP
 
 #include "glyph.hpp"
 

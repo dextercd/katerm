@@ -1,5 +1,5 @@
-#ifndef GDTERM_POSITION_HPP
-#define GDTERM_POSITION_HPP
+#ifndef KATERM_POSITION_HPP
+#define KATERM_POSITION_HPP
 
 #include <iosfwd>
 

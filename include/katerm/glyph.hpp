@@ -1,5 +1,5 @@
-#ifndef GDTERM_GLYPH_HPP
-#define GDTERM_GLYPH_HPP
+#ifndef KATERM_GLYPH_HPP
+#define KATERM_GLYPH_HPP
 
 #include <cstdint>
 
