@@ -2,11 +2,11 @@
 
 #include <katerm/position.hpp>
 
-namespace gd100 {
+namespace katerm {
 
 std::ostream& operator<<(std::ostream& os, position const p)
 {
     return os << '(' << p.x << "; " << p.y << ')';
 }
 
-} // gd100::
+} // katerm::

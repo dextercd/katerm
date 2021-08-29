@@ -6,7 +6,7 @@
 
 #include "glyph.hpp"
 
-namespace gd100 {
+namespace katerm {
 
 struct line {
     glyph* glyphs;
@@ -48,6 +48,6 @@ private:
     void set_scroll(int scroll);
 };
 
-} // gd100::
+} // katerm::
 
 #endif // header guard

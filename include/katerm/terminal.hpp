@@ -8,7 +8,7 @@
 #include "terminal_data.hpp"
 #include "terminal_decoder.hpp"
 
-namespace gd100 {
+namespace katerm {
 
 class terminal {
     friend struct terminal_instructee;
@@ -102,6 +102,6 @@ struct terminal_instructee : decoder_instructee {
 };
 
 
-} // gd100::
+} // katerm::
 
 #endif // header guard

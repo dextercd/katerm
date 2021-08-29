@@ -5,7 +5,7 @@
 #include <katerm/terminal_decoder.hpp>
 #include <katerm/colours.hpp>
 
-namespace gd100 {
+namespace katerm {
 
 namespace {
 
@@ -675,4 +675,4 @@ void decoder::decode(
 };
 
 
-} // gd100::
+} // katerm::

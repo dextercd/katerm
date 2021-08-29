@@ -7,7 +7,7 @@
 #include "position.hpp"
 #include "terminal_data.hpp"
 
-namespace gd100 {
+namespace katerm {
 
 enum class direction {
     up, down, forward, back
@@ -59,6 +59,6 @@ public:
     void decode(char const* bytes, int count, decoder_instructee& t);
 };
 
-} // gd100::
+} // katerm::
 
 #endif // header guard

@@ -5,9 +5,9 @@
 
 TEST_CASE("utf-8", "[utf-8]") {
     auto decode_utf8 = [](auto const& utf8) {
-        auto t = gd100::terminal{{10, 10}};
-        auto d = gd100::decoder{};
-        auto instructee = gd100::terminal_instructee{&t};
+        auto t = katerm::terminal{{10, 10}};
+        auto d = katerm::decoder{};
+        auto instructee = katerm::terminal_instructee{&t};
 
         d.decode(utf8, sizeof(utf8) - 1, instructee);
 

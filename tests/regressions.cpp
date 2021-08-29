@@ -8,9 +8,9 @@
 template<std::size_t N>
 void run(unsigned char (&crash_case)[N])
 {
-    gd100::decoder decoder;
-    gd100::terminal term{{132, 80}};
-    gd100::terminal_instructee instructee{&term};
+    katerm::decoder decoder;
+    katerm::terminal term{{132, 80}};
+    katerm::terminal_instructee instructee{&term};
     decoder.decode(
         reinterpret_cast<const char*>(crash_case),
         N, instructee);

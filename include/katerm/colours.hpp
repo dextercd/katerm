@@ -3,7 +3,7 @@
 
 #include "glyph.hpp"
 
-namespace gd100 {
+namespace katerm {
 
 constexpr colour sgr_colours[16]{
     {30, 30, 30},    // black
@@ -53,6 +53,6 @@ constexpr colour eight_bit_lookup(int index)
     return {0, 0, 0};
 }
 
-} // gd100::
+} // katerm::
 
 #endif // header guard

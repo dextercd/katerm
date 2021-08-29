@@ -1,7 +1,7 @@
 #include <katerm/terminal.hpp>
 #include <iostream>
 
-namespace gd100 {
+namespace katerm {
 
 void terminal_instructee::tab()
 {
@@ -239,4 +239,4 @@ void terminal_instructee::set_bracketed_paste(bool set)
         term->mode.unset(terminal_mode_bit::bracketed_paste);
 }
 
-} // gd100::
+} // katerm::

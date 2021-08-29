@@ -3,7 +3,7 @@
 
 #include <katerm/terminal_screen.hpp>
 
-namespace gd100 {
+namespace katerm {
 
 static_assert(std::is_copy_assignable_v<terminal_screen>);
 
@@ -82,4 +82,4 @@ void terminal_screen::set_scroll(int const scroll)
         m_scroll = height + bounded;
 }
 
-} // gd100::
+} // katerm::

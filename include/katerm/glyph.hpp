@@ -6,7 +6,7 @@
 #include "bit_container.hpp"
 #include "position.hpp"
 
-namespace gd100 {
+namespace katerm {
 
 enum class glyph_attr_bit {
     text_wraps = 1 << 0,
@@ -55,6 +55,6 @@ struct glyph {
     code_point code;
 };
 
-} // gd100::
+} // katerm::
 
 #endif // header guard

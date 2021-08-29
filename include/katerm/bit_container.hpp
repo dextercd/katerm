@@ -3,7 +3,7 @@
 
 #include <type_traits>
 
-namespace gd100 {
+namespace katerm {
 
 template<class bit_type>
 class bit_container
@@ -44,6 +44,6 @@ public:
     }
 };
 
-} // gd100::
+} // katerm::
 
 #endif // header guard

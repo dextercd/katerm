@@ -3,7 +3,7 @@
 
 #include <iosfwd>
 
-namespace gd100 {
+namespace katerm {
 
 struct position {
     int x;
@@ -22,6 +22,6 @@ struct position {
 
 std::ostream& operator<<(std::ostream&, position);
 
-} // gd100::
+} // katerm::
 
 #endif // header guard

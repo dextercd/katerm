@@ -9,7 +9,7 @@
 
 #include "program.hpp"
 
-namespace gd100 {
+namespace katerm {
 
 class program_terminal_manager {
 public:
@@ -39,6 +39,6 @@ private:
     std::unique_ptr<char[]> read_buffer;
 };
 
-} // gd100::
+} // katerm::
 
 #endif // header guard

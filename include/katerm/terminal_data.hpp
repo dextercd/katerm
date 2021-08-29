@@ -1,7 +1,7 @@
 #ifndef GDTERM_TERMINAL_DATA_HPP
 #define GDTERM_TERMINAL_DATA_HPP
 
-namespace gd100 {
+namespace katerm {
 
 enum cursor_state_bit {
     wrap_next = 1 << 0,
@@ -42,6 +42,6 @@ enum class charset {
     graphic0,
 };
 
-} // gd100::
+} // katerm::
 
 #endif // header guard

@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-namespace gd100 {
+namespace katerm {
 
 class program {
 public:
@@ -11,6 +11,6 @@ public:
     virtual ~program() = default;
 };
 
-} // gd100::
+} // katerm::
 
 #endif // header guard

@@ -5,7 +5,7 @@
 #include <katerm/terminal_decoder.hpp>
 #include <cw/character_width.hpp>
 
-namespace gd100 {
+namespace katerm {
 
 static_assert(std::is_copy_assignable_v<terminal>);
 
@@ -306,4 +306,4 @@ void terminal::reset_style()
     cursor.style = default_style;
 }
 
-} // gd100::
+} // katerm::
