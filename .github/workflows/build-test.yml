@@ -31,7 +31,7 @@ jobs:
           cd ..
           
           mkdir wasm-build; cd wasm-build
-          cmake --toolchain /opt/wasi-sdk/share/cmake/wasi-sdk.cmake -G Ninja -DCMAKE_CXX_FLAGS="-DCATCH_CONFIG_NO_POSIX_SIGNALS=0 -fno-exceptions" ..
+          cmake --toolchain /opt/wasi-sdk/share/cmake/wasi-sdk.cmake -G Ninja -DWASI_SDK_PREFIX=/opt/wasi-sdk -DCMAKE_CXX_FLAGS="-DCATCH_CONFIG_NO_POSIX_SIGNALS=0 -fno-exceptions" ..
           cmake --build . -t test_runner
 
       # Run tests
