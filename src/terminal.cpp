@@ -1,4 +1,3 @@
-#include <iostream>
 #include <algorithm>
 
 #include <katerm/terminal.hpp>
@@ -266,24 +265,6 @@ void terminal::insert_blanks(int count)
 void terminal::insert_newline(int const count)
 {
     scroll_down(cursor.pos.y, count);
-}
-
-void terminal::dump()
-{
-    for (int y = 0; y < screen.size().height; ++y) {
-        for (int x = 0; x < screen.size().width; ++x) {
-            auto const pos = position{x, y};
-            auto const code = screen.get_glyph(pos).code;
-            if (code != 0) {
-                std::cout << (char)code;
-            } else if (cursor.pos == pos) {
-                std::cout << '_';
-            } else {
-                std::cout << ' ';
-            }
-        }
-        std::cout << '\n';
-    }
 }
 
 position terminal::clamp_pos(position p)

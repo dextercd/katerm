@@ -51,7 +51,6 @@ public:
     void insert_blanks(int count);
     void insert_newline(int count);
     void reset_style();
-    void dump();
 
 private:
     position clamp_pos(position p);
