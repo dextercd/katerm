@@ -9,19 +9,33 @@ jobs:
           submodules: 'recursive'
       # Install required packages
       # For a recent version of CMake follow the guide on: https://apt.kitware.com/
-      - run: |
+      - name: Install
+        run: |
           sudo apt-get update && sudo apt-get install gpg wget
           wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
           echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
           sudo apt-get update
           sudo apt-get install cmake ninja-build clang
 
+          # WASM/WASI tools
+          wget -O wasi.deb https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-12/wasi-sdk_12.0_amd64.deb
+          sudo apt install ./wasi.deb
+          curl https://get.wasmer.io -sSfL | sh
+
       # Build
-      - run: |
-          mkdir build
-          cd build
+      - name: Build
+        run: |
+          mkdir clang-build; cd clang-build
           CXX=clang++ cmake -G Ninja ..
+          cmake --build .
+          cd ..
+          
+          mkdir wasm-build; cd wasm-build
+          CXX=/opt/wasi-sdk/bin/clang++ cmake -G Ninja ..
           cmake --build .
 
       # Run tests
-      - run: build/tests/test_runner
+      - name: Tests
+        run: |
+          clang-build/tests/test_runner
+          ~/.wasmer/bin/wasmer wasm-build/tests/test_runner
