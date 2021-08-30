@@ -20,7 +20,7 @@ jobs:
       - run: |
           mkdir build
           cd build
-          cmake -G Ninja ..
+          CXX=clang++ cmake -G Ninja ..
           cmake --build .
 
       # Run tests
