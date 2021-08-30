@@ -30,7 +30,7 @@ jobs:
           cmake --build .
 
       # Build WASM
-      - name: Build Clang
+      - name: Build WASM
         run: |
           mkdir wasm-build; cd wasm-build
           cmake --toolchain /opt/wasi-sdk/share/cmake/wasi-sdk.cmake -G Ninja -DWASI_SDK_PREFIX=/opt/wasi-sdk -DCMAKE_CXX_FLAGS="-DCATCH_CONFIG_NO_POSIX_SIGNALS=0 -fno-exceptions" ..
@@ -42,6 +42,6 @@ jobs:
           clang-build/tests/test_runner
 
       # Run WASM tests
-      - name: Clang Tests
+      - name: WASM Tests
         run: |
           ~/.wasmer/bin/wasmer wasm-build/tests/test_runner
