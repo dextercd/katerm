@@ -267,7 +267,7 @@ void terminal::insert_newline(int const count)
     scroll_down(cursor.pos.y, count);
 }
 
-position terminal::clamp_pos(position p)
+position terminal::clamp_pos(position p) const
 {
     auto const sz = screen.size();
 

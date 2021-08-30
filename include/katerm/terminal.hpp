@@ -53,7 +53,7 @@ public:
     void reset_style();
 
 private:
-    position clamp_pos(position p);
+    position clamp_pos(position p) const;
 };
 
 struct terminal_instructee : decoder_instructee {
