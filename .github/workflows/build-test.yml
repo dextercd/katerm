@@ -31,8 +31,8 @@ jobs:
           cd ..
           
           mkdir wasm-build; cd wasm-build
-          CXX=/opt/wasi-sdk/bin/clang++ cmake -G Ninja ..
-          cmake --build .
+          CXX=/opt/wasi-sdk/bin/clang++ cmake -G Ninja -DCMAKE_CXX_FLAGS="-DCATCH_CONFIG_NO_POSIX_SIGNALS=0 -fno-exceptions" ..
+          cmake --build . -t test_runner
 
       # Run tests
       - name: Tests
