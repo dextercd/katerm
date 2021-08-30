@@ -1,0 +1,27 @@
+name: build-test
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      # Install required packages
+      # For a recent version of CMake follow the guide on: https://apt.kitware.com/
+      - run: |
+        apt-get update && apt-get install gpg wget
+        wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
+        echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' | tee /etc/apt/sources.list.d/kitware.list >/dev/null
+        apt-get update
+        apt-get install cmake ninja-build clang
+
+      # Build
+      - run: |
+        mkdir build
+        cd build
+        cmake -G Ninja ..
+        cmake --build .
+
+      # Run tests
+      - run: build/tests/test_runner
