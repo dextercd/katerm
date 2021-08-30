@@ -1,0 +1,41 @@
+name: build-test
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      # Install required packages
+      # For a recent version of CMake follow the guide on: https://apt.kitware.com/
+      - name: Install
+        run: |
+          sudo apt-get update && sudo apt-get install gpg wget
+          wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
+          echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
+          sudo apt-get update
+          sudo apt-get install cmake ninja-build clang
+
+          # WASM/WASI tools
+          wget -O wasi.deb https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-12/wasi-sdk_12.0_amd64.deb
+          sudo apt install ./wasi.deb
+          curl https://get.wasmer.io -sSfL | sh
+
+      # Build
+      - name: Build
+        run: |
+          mkdir clang-build; cd clang-build
+          CXX=clang++ cmake -G Ninja ..
+          cmake --build .
+          cd ..
+          
+          mkdir wasm-build; cd wasm-build
+          cmake --toolchain /opt/wasi-sdk/share/cmake/wasi-sdk.cmake -G Ninja -DWASI_SDK_PREFIX=/opt/wasi-sdk -DCMAKE_CXX_FLAGS="-DCATCH_CONFIG_NO_POSIX_SIGNALS=0 -fno-exceptions" ..
+          cmake --build . -t test_runner
+
+      # Run tests
+      - name: Tests
+        run: |
+          clang-build/tests/test_runner
+          ~/.wasmer/bin/wasmer wasm-build/tests/test_runner
