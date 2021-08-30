@@ -22,20 +22,26 @@ jobs:
           sudo apt install ./wasi.deb
           curl https://get.wasmer.io -sSfL | sh
 
-      # Build
-      - name: Build
+      # Build Clang
+      - name: Build Clang
         run: |
           mkdir clang-build; cd clang-build
           CXX=clang++ cmake -G Ninja ..
           cmake --build .
-          cd ..
-          
+
+      # Build WASM
+      - name: Build Clang
+        run: |
           mkdir wasm-build; cd wasm-build
           cmake --toolchain /opt/wasi-sdk/share/cmake/wasi-sdk.cmake -G Ninja -DWASI_SDK_PREFIX=/opt/wasi-sdk -DCMAKE_CXX_FLAGS="-DCATCH_CONFIG_NO_POSIX_SIGNALS=0 -fno-exceptions" ..
           cmake --build . -t test_runner
 
-      # Run tests
-      - name: Tests
+      # Run Clang tests
+      - name: Clang Tests
         run: |
           clang-build/tests/test_runner
+
+      # Run WASM tests
+      - name: Clang Tests
+        run: |
           ~/.wasmer/bin/wasmer wasm-build/tests/test_runner
