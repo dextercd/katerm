@@ -86,11 +86,7 @@ void terminal_instructee::position_cursor(position pos)
 
 void terminal_instructee::change_mode_bits(bool set, terminal_mode mode)
 {
-    if (set) {
-        term->mode.set(mode);
-    } else {
-        term->mode.unset(mode);
-    }
+    term->mode.set(mode, set);
 }
 
 void terminal_instructee::move_cursor(int count, direction dir, bool first_col)
@@ -191,10 +187,7 @@ void terminal_instructee::set_background(colour c)
 
 void terminal_instructee::set_reversed(bool enable)
 {
-    if (enable)
-        term->cursor.style.mode.set(glyph_attr_bit::reversed);
-    else
-        term->cursor.style.mode.unset(glyph_attr_bit::reversed);
+    term->cursor.style.mode.set(glyph_attr_bit::reversed, enable);
 }
 
 void terminal_instructee::default_foreground()
@@ -209,10 +202,7 @@ void terminal_instructee::default_background()
 
 void terminal_instructee::set_bold(bool enable)
 {
-    if (enable)
-        term->cursor.style.mode.set(glyph_attr_bit::bold);
-    else
-        term->cursor.style.mode.unset(glyph_attr_bit::bold);
+    term->cursor.style.mode.set(glyph_attr_bit::bold, enable);
 }
 
 void terminal_instructee::set_mouse_mode(mouse_mode mode, bool set)
@@ -225,18 +215,12 @@ void terminal_instructee::set_mouse_mode(mouse_mode mode, bool set)
 
 void terminal_instructee::set_mouse_mode_extended(bool set)
 {
-    if (set)
-        term->mode.set(terminal_mode_bit::extended_mouse);
-    else
-        term->mode.unset(terminal_mode_bit::extended_mouse);
+    term->mode.set(terminal_mode_bit::extended_mouse, set);
 }
 
 void terminal_instructee::set_bracketed_paste(bool set)
 {
-    if (set)
-        term->mode.set(terminal_mode_bit::bracketed_paste);
-    else
-        term->mode.unset(terminal_mode_bit::bracketed_paste);
+    term->mode.set(terminal_mode_bit::bracketed_paste, set);
 }
 
 } // katerm::
