@@ -11,11 +11,6 @@ namespace {
 
 constexpr char esc = '\x1b';
 
-enum class csi_param_type {
-    number,
-    character
-};
-
 constexpr int max_csi_params = 10;
 
 constexpr bool is_csi_final(char const c)
