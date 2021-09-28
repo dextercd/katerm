@@ -44,6 +44,16 @@ struct extend {
     int height;
 };
 
+inline bool operator==(extend a, extend b)
+{
+    return a.width == b.width && a.height == b.height;
+}
+
+inline bool operator!=(extend a, extend b)
+{
+    return !(a == b);
+}
+
 struct glyph_style {
     colour fg;
     colour bg;

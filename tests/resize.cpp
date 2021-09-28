@@ -53,3 +53,20 @@ TEST_CASE("Increasing is stable", "[resize]") {
         REQUIRE(term.screen.get_glyph({5, 5}).code == '!');
     }
 }
+
+TEST_CASE("Size changes after resize", "[resize]") {
+    katerm::terminal term{{12, 8}};
+    katerm::decoder decoder{};
+    katerm::terminal_instructee instructee{&term};
+
+    SECTION("Before resize") {
+        REQUIRE(term.screen.size() == katerm::extend{12, 8});
+    }
+
+    auto before_resize = term.cursor.pos;
+    term.resize({4, 5});
+
+    SECTION("After resize") {
+        REQUIRE(term.screen.size() == katerm::extend{4, 5});
+    }
+}
