@@ -187,12 +187,7 @@ void terminal::scroll_down(int keep_top, int const count)
 
 void terminal::clear_lines(int line_beg, int line_end)
 {
-    auto const fill_glyph = glyph{
-        glyph_style{cursor.style.fg, cursor.style.bg, {}},
-        code_point{0}
-    };
-
-    screen.fill_lines(line_beg, line_end, fill_glyph);
+    screen.fill_lines(line_beg, line_end, clear_glyph());
 }
 
 void terminal::clear(position start, position end)
@@ -276,5 +271,16 @@ void terminal::reset_style()
 {
     cursor.style = default_style;
 }
+
+glyph_style terminal::clear_style() const
+{
+    return {cursor.style.fg, cursor.style.bg, {}};
+}
+
+glyph terminal::clear_glyph() const
+{
+    return {clear_style(), code_point{0}};
+}
+
 
 } // katerm::

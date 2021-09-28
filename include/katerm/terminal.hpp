@@ -52,6 +52,9 @@ public:
     void insert_newline(int count);
     void reset_style();
 
+    glyph_style clear_style() const;
+    glyph clear_glyph() const;
+
 private:
     position clamp_pos(position p) const;
 };
