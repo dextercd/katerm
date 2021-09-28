@@ -29,6 +29,8 @@ public:
 
     terminal_screen(extend screen_sz);
 
+    void fill_lines(int line_beg, int line_end, glyph fill_glyph);
+
     glyph* get_line(int line);
     glyph& get_glyph(position pos);
 

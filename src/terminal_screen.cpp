@@ -20,6 +20,21 @@ terminal_screen::terminal_screen(extend screen_sz)
     }
 }
 
+void terminal_screen::fill_lines(int line_beg, int line_end, glyph fill_glyph)
+{
+    line_end = std::clamp(line_end, 0, size().height);
+    line_beg = std::clamp(line_beg, 0, line_end);
+
+    for(auto line_it{line_beg}; line_it != line_end; ++line_it) {
+        std::fill(
+            get_line(line_it),
+            get_line(line_it) + size().width,
+            fill_glyph);
+    }
+
+    mark_dirty(line_beg, line_end);
+}
+
 glyph* terminal_screen::get_line(int line)
 {
     return lines[line].glyphs;

@@ -187,22 +187,12 @@ void terminal::scroll_down(int keep_top, int const count)
 
 void terminal::clear_lines(int line_beg, int line_end)
 {
-    line_end = std::clamp(line_end, 0, screen.size().height);
-    line_beg = std::clamp(line_beg, 0, line_end);
-
     auto const fill_glyph = glyph{
         glyph_style{cursor.style.fg, cursor.style.bg, {}},
         code_point{0}
     };
 
-    for(auto line_it{line_beg}; line_it != line_end; ++line_it) {
-        std::fill(
-            screen.get_line(line_it),
-            screen.get_line(line_it) + screen.size().width,
-            fill_glyph);
-    }
-
-    mark_dirty(line_beg, line_end);
+    screen.fill_lines(line_beg, line_end, fill_glyph);
 }
 
 void terminal::clear(position start, position end)
