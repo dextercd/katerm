@@ -20,6 +20,35 @@ terminal_screen::terminal_screen(extend screen_sz)
     }
 }
 
+int terminal_screen::resize(
+        extend const new_size,
+        int preserve_column,
+        glyph const fill_glyph)
+{
+    if (preserve_column >= new_size.height) {
+        auto diff = preserve_column - new_size.height;
+        scroll_up(0, diff + 1, fill_glyph);
+        preserve_column = new_size.height - 1;
+    }
+
+    resize(new_size);
+
+    return preserve_column;
+}
+
+void terminal_screen::resize(extend new_size)
+{
+    auto replacement = terminal_screen{m_size};
+    for (auto line = 0; line < new_size.height && line < size().height; ++line) {
+        for (auto x = 0; x < new_size.width && x < size().width; ++x) {
+            replacement.lines[line].glyphs[x] = lines[line].glyphs[x];
+        }
+    }
+
+    *this = std::move(replacement);
+    mark_dirty(0, size().height);
+}
+
 void terminal_screen::fill_lines(int line_beg, int line_end, glyph fill_glyph)
 {
     line_end = std::clamp(line_end, 0, size().height);

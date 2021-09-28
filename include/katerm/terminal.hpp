@@ -34,6 +34,8 @@ public:
 
     charset current_charset() const;
 
+    void resize(extend new_size);
+
     void tab();
     void newline(bool first_column);
     void write_char(code_point ch);

@@ -3,7 +3,8 @@ add_executable(test_runner
 
     terminal.cpp
     decoding.cpp
-    regressions.cpp)
+    regressions.cpp
+    resize.cpp)
 
 target_link_libraries(test_runner
     PRIVATE Catch2::Catch2

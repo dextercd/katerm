@@ -13,6 +13,13 @@ charset terminal::current_charset() const
     return translation_tables[using_translation_table];
 }
 
+void terminal::resize(extend const new_size)
+{
+    auto new_y = screen.resize(new_size, cursor.pos.y, clear_glyph());
+    cursor.pos.y = new_y;
+    cursor.pos = clamp_pos(cursor.pos);
+}
+
 void terminal::tab()
 {
     auto constexpr tab_size = 8;

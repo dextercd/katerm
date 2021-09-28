@@ -29,6 +29,9 @@ public:
 
     terminal_screen(extend screen_sz);
 
+    int resize(extend new_size, int preserve_column, glyph fill_glyph);
+    void resize(extend new_size);
+
     void fill_lines(int line_beg, int line_end, glyph fill_glyph);
 
     void scroll_up(int keep_top, int const count, glyph fill);
