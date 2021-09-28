@@ -38,7 +38,7 @@ int terminal_screen::resize(
 
 void terminal_screen::resize(extend new_size)
 {
-    auto replacement = terminal_screen{m_size};
+    auto replacement = terminal_screen{new_size};
     for (auto line = 0; line < new_size.height && line < size().height; ++line) {
         for (auto x = 0; x < new_size.width && x < size().width; ++x) {
             replacement.lines[line].glyphs[x] = lines[line].glyphs[x];
