@@ -34,6 +34,8 @@ public:
 
     charset current_charset() const;
 
+    void resize(extend new_size);
+
     void tab();
     void newline(bool first_column);
     void write_char(code_point ch);
@@ -51,6 +53,9 @@ public:
     void insert_blanks(int count);
     void insert_newline(int count);
     void reset_style();
+
+    glyph_style clear_style() const;
+    glyph clear_glyph() const;
 
 private:
     position clamp_pos(position p) const;

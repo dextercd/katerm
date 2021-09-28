@@ -13,6 +13,13 @@ charset terminal::current_charset() const
     return translation_tables[using_translation_table];
 }
 
+void terminal::resize(extend const new_size)
+{
+    auto new_y = screen.resize(new_size, cursor.pos.y, clear_glyph());
+    cursor.pos.y = new_y;
+    cursor.pos = clamp_pos(cursor.pos);
+}
+
 void terminal::tab()
 {
     auto constexpr tab_size = 8;
@@ -141,68 +148,17 @@ void terminal::mark_dirty(int const line_beg, int const line_end)
 
 void terminal::scroll_up(int keep_top, int const count)
 {
-    auto const height = screen.size().height;
-
-    keep_top = std::clamp(keep_top, 0, height);
-    auto const move_end = height;
-    auto const move_to = std::clamp(keep_top + count, 0, height);
-
-    std::rotate(
-        screen.lines.begin() + keep_top,
-        screen.lines.begin() + move_to,
-        screen.lines.begin() + move_end);
-
-    clear_lines(move_end - count, move_end);
-
-    if (keep_top < height / 2) {
-        mark_dirty(0, keep_top);
-        screen.move_scroll(count);
-    } else {
-        screen.mark_dirty(keep_top, move_end);
-    }
+    screen.scroll_up(keep_top, count, clear_glyph());
 }
 
 void terminal::scroll_down(int keep_top, int const count)
 {
-    auto const height = screen.size().height;
-
-    keep_top = std::clamp(keep_top, 0, height);
-    auto const move_end = height;
-    auto const move_to = std::clamp(move_end - count, keep_top, height);
-
-    std::rotate(
-        screen.lines.begin() + keep_top,
-        screen.lines.begin() + move_to,
-        screen.lines.begin() + move_end);
-
-    clear_lines(move_end - count, move_end);
-
-    if (keep_top < height / 2) {
-        mark_dirty(0, keep_top);
-        screen.move_scroll(-count);
-    } else {
-        screen.mark_dirty(keep_top, move_end);
-    }
+    screen.scroll_down(keep_top, count, clear_glyph());
 }
 
 void terminal::clear_lines(int line_beg, int line_end)
 {
-    line_end = std::clamp(line_end, 0, screen.size().height);
-    line_beg = std::clamp(line_beg, 0, line_end);
-
-    auto const fill_glyph = glyph{
-        glyph_style{cursor.style.fg, cursor.style.bg, {}},
-        code_point{0}
-    };
-
-    for(auto line_it{line_beg}; line_it != line_end; ++line_it) {
-        std::fill(
-            screen.get_line(line_it),
-            screen.get_line(line_it) + screen.size().width,
-            fill_glyph);
-    }
-
-    mark_dirty(line_beg, line_end);
+    screen.fill_lines(line_beg, line_end, clear_glyph());
 }
 
 void terminal::clear(position start, position end)
@@ -286,5 +242,16 @@ void terminal::reset_style()
 {
     cursor.style = default_style;
 }
+
+glyph_style terminal::clear_style() const
+{
+    return {cursor.style.fg, cursor.style.bg, {}};
+}
+
+glyph terminal::clear_glyph() const
+{
+    return {clear_style(), code_point{0}};
+}
+
 
 } // katerm::
