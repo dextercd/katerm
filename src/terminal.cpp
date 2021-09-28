@@ -141,48 +141,12 @@ void terminal::mark_dirty(int const line_beg, int const line_end)
 
 void terminal::scroll_up(int keep_top, int const count)
 {
-    auto const height = screen.size().height;
-
-    keep_top = std::clamp(keep_top, 0, height);
-    auto const move_end = height;
-    auto const move_to = std::clamp(keep_top + count, 0, height);
-
-    std::rotate(
-        screen.lines.begin() + keep_top,
-        screen.lines.begin() + move_to,
-        screen.lines.begin() + move_end);
-
-    clear_lines(move_end - count, move_end);
-
-    if (keep_top < height / 2) {
-        mark_dirty(0, keep_top);
-        screen.move_scroll(count);
-    } else {
-        screen.mark_dirty(keep_top, move_end);
-    }
+    screen.scroll_up(keep_top, count, clear_glyph());
 }
 
 void terminal::scroll_down(int keep_top, int const count)
 {
-    auto const height = screen.size().height;
-
-    keep_top = std::clamp(keep_top, 0, height);
-    auto const move_end = height;
-    auto const move_to = std::clamp(move_end - count, keep_top, height);
-
-    std::rotate(
-        screen.lines.begin() + keep_top,
-        screen.lines.begin() + move_to,
-        screen.lines.begin() + move_end);
-
-    clear_lines(move_end - count, move_end);
-
-    if (keep_top < height / 2) {
-        mark_dirty(0, keep_top);
-        screen.move_scroll(-count);
-    } else {
-        screen.mark_dirty(keep_top, move_end);
-    }
+    screen.scroll_down(keep_top, count, clear_glyph());
 }
 
 void terminal::clear_lines(int line_beg, int line_end)

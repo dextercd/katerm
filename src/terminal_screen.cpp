@@ -35,6 +35,52 @@ void terminal_screen::fill_lines(int line_beg, int line_end, glyph fill_glyph)
     mark_dirty(line_beg, line_end);
 }
 
+void terminal_screen::scroll_up(int keep_top, int const count, glyph fill)
+{
+    auto const height = size().height;
+
+    keep_top = std::clamp(keep_top, 0, height);
+    auto const move_end = height;
+    auto const move_to = std::clamp(keep_top + count, 0, height);
+
+    std::rotate(
+        lines.begin() + keep_top,
+        lines.begin() + move_to,
+        lines.begin() + move_end);
+
+    fill_lines(move_end - count, move_end, fill);
+
+    if (keep_top < height / 2) {
+        mark_dirty(0, keep_top);
+        move_scroll(count);
+    } else {
+        mark_dirty(keep_top, move_end);
+    }
+}
+
+void terminal_screen::scroll_down(int keep_top, int const count, glyph fill)
+{
+    auto const height = size().height;
+
+    keep_top = std::clamp(keep_top, 0, height);
+    auto const move_end = height;
+    auto const move_to = std::clamp(move_end - count, keep_top, height);
+
+    std::rotate(
+        lines.begin() + keep_top,
+        lines.begin() + move_to,
+        lines.begin() + move_end);
+
+    fill_lines(move_end - count, move_end, fill);
+
+    if (keep_top < height / 2) {
+        mark_dirty(0, keep_top);
+        move_scroll(-count);
+    } else {
+        mark_dirty(keep_top, move_end);
+    }
+}
+
 glyph* terminal_screen::get_line(int line)
 {
     return lines[line].glyphs;
