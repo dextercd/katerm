@@ -1,6 +1,6 @@
 add_custom_command(
     OUTPUT
-        k/katerm
+        k/katerm-color
     DEPENDS
         term.info
     COMMAND
@@ -10,4 +10,4 @@ add_custom_command(
 
 add_custom_target(terminfo ALL
     DEPENDS
-        k/katerm)
+        k/katerm-color)
