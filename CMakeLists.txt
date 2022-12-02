@@ -4,6 +4,11 @@ project(katerm)
 
 enable_testing()
 
+if (MSVC)
+    add_compile_options(/utf-8)
+endif()
+
+
 add_subdirectory(character_width)
 
 # terminal-interface
