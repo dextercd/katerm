@@ -51,4 +51,7 @@ add_subdirectory(terminfo)
 add_subdirectory(extern/Catch2)
 
 add_subdirectory(tests)
-add_subdirectory(fuzzing)
+
+if (KATERM_FUZZING)
+    add_subdirectory(fuzzing)
+endif()
