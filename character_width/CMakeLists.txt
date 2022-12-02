@@ -1,3 +1,5 @@
+find_package(Python3 REQUIRED Interpreter)
+
 if(NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/EastAsianWidth.txt)
     file(DOWNLOAD
         https://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt
@@ -13,7 +15,7 @@ endif()
 add_custom_command(
     OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/double_width_table.inc
     COMMAND
-        python3 ${CMAKE_CURRENT_SOURCE_DIR}/generate_double_width_table.py
+        Python3::Interpreter ${CMAKE_CURRENT_SOURCE_DIR}/generate_double_width_table.py
                 --input ${CMAKE_CURRENT_BINARY_DIR}/EastAsianWidth.txt
                 --output ${CMAKE_CURRENT_BINARY_DIR}/double_width_table.inc
 
@@ -25,7 +27,7 @@ add_custom_command(
 add_custom_command(
     OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/zero_width_table.inc
     COMMAND
-        python3 ${CMAKE_CURRENT_SOURCE_DIR}/generate_zero_width_table.py
+        Python3::Interpreter ${CMAKE_CURRENT_SOURCE_DIR}/generate_zero_width_table.py
                 --input ${CMAKE_CURRENT_BINARY_DIR}/DerivedGeneralCategory.txt
                 --output ${CMAKE_CURRENT_BINARY_DIR}/zero_width_table.inc
 
