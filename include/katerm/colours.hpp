@@ -13,7 +13,7 @@ constexpr colour sgr_colours[16]{
     {18, 99, 170},   // blue
     {157, 55, 168},  // magenta
     {15, 180, 188},  // cyan
-    {200, 200, 200}, // white
+    {160, 160, 160}, // white
     {127, 127, 127}, // bright black
     {248, 24, 24},   // bright red
     {65, 205, 65},   // bright green
@@ -21,7 +21,7 @@ constexpr colour sgr_colours[16]{
     {34, 123, 201},  // bright blue
     {177, 77, 188},  // bright magenta
     {13, 211, 221},  // bright cyan
-    {255, 255, 255}  // bright white
+    {220, 220, 220}  // bright white
 };
 
 constexpr colour eight_bit_lookup(int index)
